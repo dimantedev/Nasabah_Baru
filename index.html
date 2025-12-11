@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir CIF - PT. BPR AKASIA MAS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f6f9; }
+        .form-section-title { font-weight: bold; margin-top: 20px; margin-bottom: 10px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; color: #444; }
+        .required-asterisk { color: red; }
+        .bpr-header { border-bottom: 3px solid #0d6efd; padding-bottom: 15px; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4 mb-5">
+    <div class="card shadow-sm">
+        <div class="card-body p-4">
+            
+            <div class="row bpr-header align-items-center">
+                <div class="col-md-4">
+                    <h3 class="text-primary fw-bold">BPR AKASIA MAS</h3>
+                </div>
+                <div class="col-md-8 text-md-end">
+                    <h4 class="mb-0">PT. BPR AKASIA MAS (CIF)</h4>
+                </div>
+            </div>
+
+            <form name="bpr-form-cif">
+                
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label class="fw-bold mb-2">Kategori Nasabah</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="kategori_nasabah" value="Nasabah Baru" checked>
+                            <label class="form-check-label">Nasabah Baru</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="kategori_nasabah" value="Pengkinian Data">
+                            <label class="form-check-label">Sudah Menjadi Nasabah/Pengkinian Data</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-3 mt-md-0">
+                        <label class="fw-bold mb-2">Sumber Data Nasabah</label>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sumber_data" value="Website" onclick="toggleOther(false)">
+                                <label class="form-check-label">Website</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sumber_data" value="Brosur" onclick="toggleOther(false)">
+                                <label class="form-check-label">Brosur</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sumber_data" value="Other" onclick="toggleOther(true)">
+                                <label class="form-check-label">Other</label>
+                            </div>
+                        </div>
+                        <input type="text" name="sumber_data_lainnya" id="inputOther" class="form-control mt-2 d-none" placeholder="Sebutkan sumber lainnya...">
+                    </div>
+                </div>
+
+                <h5 class="text-center fw-bold mt-4">Formulir Pembukaan Rekening</h5>
+                <p class="text-center text-muted mb-4">DATA NASABAH (CIF) PERORANGAN</p>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Nama Lengkap (Sesuai KTP/Paspor/KITAS) <span class="required-asterisk">*</span></label>
+                        <input type="text" name="nama_lengkap" class="form-control bg-light" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Nama Alias/Panggilan <span class="required-asterisk">*</span></label>
+                        <input type="text" name="nama_alias" class="form-control bg-light" required>
+                    </div>
+
+                    <div class="col-md-8">
+                        <label class="form-label fw-bold">Alamat Sesuai Tanda Pengenal <span class="required-asterisk">*</span></label>
+                        <input type="text" name="alamat_ktp" class="form-control bg-light" placeholder="Nama Jalan, No. Rumah" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">RT/RW</label>
+                        <input type="text" name="rtrw_ktp" class="form-control bg-light">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Desa/Kelurahan <span class="required-asterisk">*</span></label>
+                        <input type="text" name="kelurahan_ktp" class="form-control bg-light" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Kecamatan <span class="required-asterisk">*</span></label>
+                        <input type="text" name="kecamatan_ktp" class="form-control bg-light" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Kota <span class="required-asterisk">*</span></label>
+                        <input type="text" name="kota_ktp" class="form-control bg-light" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Kode Pos</label>
+                        <input type="number" name="kodepos_ktp" class="form-control bg-light">
+                    </div>
+                </div>
+
+                <div class="my-4 p-3 border rounded bg-white">
+                    <label class="fw-bold mb-2">Alamat KTP sesuai dengan alamat tempat tinggal saat ini?</label>
+                    <div class="d-flex gap-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="alamat_sama_status" value="Iya" onclick="toggleDomisili(true)">
+                            <label class="form-check-label fw-bold">Iya</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="alamat_sama_status" value="Tidak" onclick="toggleDomisili(false)" checked>
+                            <label class="form-check-label fw-bold">Tidak</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="section-domisili" class="row g-3">
+                    <div class="col-md-8">
+                        <label class="form-label fw-bold">Alamat Tempat Tinggal Terkini <span class="required-asterisk">*</span></label>
+                        <input type="text" name="alamat_domisili" class="form-control bg-light" placeholder="Isi alamat tempat tinggal sekarang">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">RT/RW</label>
+                        <input type="text" name="rtrw_domisili" class="form-control bg-light">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Desa/Kelurahan <span class="required-asterisk">*</span></label>
+                        <input type="text" name="kelurahan_domisili" class="form-control bg-light">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Kecamatan <span class="required-asterisk">*</span></label>
+                        <input type="text" name="kecamatan_domisili" class="form-control bg-light">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Kota <span class="required-asterisk">*</span></label>
+                        <input type="text" name="kota_domisili" class="form-control bg-light">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Kode Pos <span class="required-asterisk">*</span></label>
+                        <input type="number" name="kodepos_domisili" class="form-control bg-light">
+                    </div>
+                     <div class="col-md-3">
+                        <label class="form-label fw-bold">Nomor Telp</label>
+                        <input type="number" name="no_telp" class="form-control bg-light">
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">KIRIM FORMULIR</button>
+                    <button class="btn btn-primary w-100 py-2 fw-bold d-none" id="btn-loading" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Mengirim Data...
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // URL Web App dari Google Apps Script (PASTE DISINI)
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxTMK0mj-cWI5MJH4W3RC15GejTcB5_OVekkWFcledj5jjPeWWjKCesaqDLDVdsl0B05Q/exec'; 
+
+    const form = document.forms['bpr-form-cif'];
+    const btnSubmit = document.querySelector('button[type="submit"]');
+    const btnLoading = document.getElementById('btn-loading');
+
+    // Fungsi Logika "Other" pada Sumber Data
+    function toggleOther(show) {
+        const input = document.getElementById('inputOther');
+        if (show) input.classList.remove('d-none');
+        else input.classList.add('d-none');
+    }
+
+    // Fungsi Logika Alamat KTP vs Domisili
+    function toggleDomisili(isSame) {
+        const section = document.getElementById('section-domisili');
+        const inputs = section.querySelectorAll('input');
+        
+        if (isSame) {
+            // Jika alamat sama, sembunyikan form domisili & hilangkan wajib isi
+            section.classList.add('d-none');
+            inputs.forEach(input => input.removeAttribute('required'));
+        } else {
+            // Jika tidak sama, tampilkan & wajibkan isi kolom utama
+            section.classList.remove('d-none');
+            // Set required manual untuk kolom penting saja
+            document.getElementsByName('alamat_domisili')[0].setAttribute('required', '');
+            document.getElementsByName('kelurahan_domisili')[0].setAttribute('required', '');
+            document.getElementsByName('kota_domisili')[0].setAttribute('required', '');
+        }
+    }
+
+    // Handle Submit
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // UI Loading
+        btnSubmit.classList.add('d-none');
+        btnLoading.classList.remove('d-none');
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert('Data Nasabah Berhasil Disimpan!');
+                form.reset();
+                // Reset UI
+                btnSubmit.classList.remove('d-none');
+                btnLoading.classList.add('d-none');
+                // Kembalikan ke default state
+                toggleDomisili(false); 
+                toggleOther(false);
+            })
+            .catch(error => {
+                alert('Terjadi kesalahan! Coba lagi.');
+                console.error('Error!', error.message);
+                btnSubmit.classList.remove('d-none');
+                btnLoading.classList.add('d-none');
+            });
+    });
+</script>
+
+</body>
+</html>
